@@ -1,0 +1,74 @@
+{% for user in users %}
+<div class="contact-section">
+  <div class="row">
+    <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
+        <div class="row">
+          <div class="col-sm-5">
+            <input type="checkbox" class="filled-in mCheckBox" id="{{ user.id }}">
+            <label for="{{ user.id }}" id="{{ user.id }}"></label>
+            <div class="image-container d-inline-block">
+              {% if user.img_url %}
+                <img src="{{ user.img_url }}" class="contact-img"/>
+              {% else %}
+                <img src="https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ user.img_file }}" onError="this.onerror=null;this.src='https://s3.ap-south-1.amazonaws.com/vcfirm-contactimages-ap-south-1/images/user-bg180.png';" class="contact-img"/>
+              {% endif %}
+              {% if not user.linkedin_url %}
+                <img src="https://s3.ap-south-1.amazonaws.com/vcfirm-contactimages-ap-south-1/images/igray-icon25.png" class="fish">
+              {% else %}
+                <a href="{{ user.linkedin_url }}"  target="_blank">
+                  <img src="https://s3.ap-south-1.amazonaws.com/vcfirm-contactimages-ap-south-1/images/linkedin_icon25.png" class="fish">
+                </a>
+              {% endif %}
+
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="personal-data">
+              <h4 title="{{ user.name }}">{{ user.name }} {{ upload }}</h4>
+              <p title="{{ user.title }}">{{ user.title }}</p>
+              <div class="details theme" title="{{ user.location }}"><i class="fas fa-map-marker-alt"></i>   {{ user.location }}</div>
+              <div class="details">Tags: {% for tag in user.tags.all|slice:":2" %}<span title="{{ tag }}" class="pills">#{{ tag }}</span>{% endfor %}</div>
+              <div class="details" title="{{ user.past_investment }}">Past Investments:<span> {{ user.past_investment|default_if_none:"&nbsp;" }}</span></div>
+              <div class="details">vcfirm Connections:<span class="theme">{% for connect in user.connection.all %}
+                     <span class="theme">{{ connect }}</span>{% if not forloop.last %}, {% endif %}
+                     {% endfor %}
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12">
+      <div class="row">
+      <div class="col-xl-7 col-lg-12 col-md-7 col-sm-12">
+        <div class="comp-row">
+          <div class=""><img src="https://s3.ap-south-1.amazonaws.com/vcfirm-contactimages-ap-south-1/images/suitcase25.png" style="width:25px; height:25px; margin-left:10px;"></div>
+            {% for company in user.company.all|slice:":4" %}
+            <div class="company-details">
+               <h5 title="{{ company }}">{{ company }}</h5>
+               <h7 title="{{ company.title }}">{{ company.title|default_if_none:"" }} </h7>
+               <h6 title="{{ company.location }}">{{ company.location }} </h6>
+               <small title="{{ company.year }}">{{ company.year }} </small>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="clearfix visible-xs"></div>
+      <div class="col-xl-5 col-lg-12 col-md-5 col-sm-12">
+        <div class="edu-row">
+          <div class=""><img src="https://s3.ap-south-1.amazonaws.com/vcfirm-contactimages-ap-south-1/images/grad.svg" style="width:25px; height:25px; margin-left:10px;"></div>
+          {% for institute in user.institute.all|slice:":2" %}
+          <div class="education-details">
+             <h5 title="{{ institute }}">{{ institute }} </h5>
+            <h6 title="{{ institute.degree }}">{{ institute.degree }} </h6>
+            <small title="{{ institute.year }}">{{ institute.year }} </small>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
+  </div>
+
+{% endfor %}

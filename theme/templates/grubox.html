@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Grubox{% endblock %}
+{% block css %}<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="full-bg-cover" style="background-image:url('{% static "images/grubg.jpg" %}')">
+    <div class="bg-overlay grubox-gr"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="porfolio-left-content">
+                    <h1>Grubox</h1>
+                    <h4 class="robo">APP BASED CLOUD VENDING SOLUTION FOR 24X7 ON-THE-GO NEEDS.</h4>
+                    <p>Grubox provides an app based cloud vending solution for 24X7 access to our on the go needs at places where retail has never been. Powered by IoT and Data Science, Grubox offers single tap purchasing and personalized offering to its users. Its proprietary smart supply chain management platform ensures demand aware machines, with real time controls over its operations</p>
+                    <h5 class="medium">For More Info</h5>
+                    <h5 class="theme robo">
+                        <a href="https://www.grubox.in/" class="theme" target="_blank">grubox.in</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="founder-section">
+                    <h4 class=" robo">FOUNDERS</h4>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <a href="https://www.linkedin.com/in/nishant-misra-44a9713/" target="_blank">
+                                <img src="{% static "images/grubox-1.jpg" %}" width="120px" height="120px">
+                                <p class="">Nishant Misra</p>
+                            </a>
+
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="https://in.linkedin.com/in/prersi" target="_blank">
+                                <img src="{% static "images/grubox-2.jpg" %}" width="120px" height="120px">
+                                <p class="">Prerna Singh</p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+     $(".hamb").click(function () {
+            $(this).toggleClass("active");
+            $(".menu-overlay").toggleClass("active");
+        })
+
+</script>
+{% endblock %}

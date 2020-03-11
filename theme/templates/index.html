@@ -1,0 +1,290 @@
+{% extends 'base.html' %} #Direct From Templates Folder
+{% load static %}
+{% block title %}vcfirm Ventures{% endblock %}
+{% block css %}
+{% endblock %}
+{% block content %}
+<!--image carousal-->
+<div id="myCarousel" class="carousel slide pad-left" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="slide-container slider1" style="height:95vh;">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h1 class="header-caption">We are the
+                            <span class="theme">First Institutional Capital</span> to invest in your vision</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="slide-container" style="height:95vh;background-image:url('{% static "images/vcfirmslide2.jpg" %}')">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h1 class="header-caption">We help passionate leaders
+                            <span class="theme">transform ideas</span> into category creating, best-in-class businesses</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="slide-container" style="height:95vh;background-image:url('{% static "images/vcfirmslide3.jpg" %}')">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h1 class="header-caption">We believe
+                            <span class="theme"> technology</span> is at the core of touching people and creating a lasting impact</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-down-arrow">
+        <img src="{% static "images/scrolluparrow.svg" %}" alt=""> SCROLL UP
+    </div>
+</div>
+<!--ended-->
+<!-- portfolio -->
+<div id="fullpage">
+    <div class="section">
+        <div class="container">
+            <h2 class="robo title">RECENT
+                <span class="theme">INVESTMENTS</span>
+            </h2>
+            {% for portf in portfolio %}
+                <div class="portfolio-item" style="background-image:url('{% static "images/fylebg.jpg" %}')">
+                    <div class="left">
+                        <img src="https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ portf.portfolio_image }}"  class="team-portfolio" alt="">
+                    </div>
+                    <div class="right">
+                        <div class="c-card">
+                            <div class="count robo">{{ portf.priority }}</div>
+                            <div class="card-content">
+                                <h1 class=" robo"> {{ portf.company_name}}</h1>
+                                <h5>{{ portf.company_subhead}}</h5>
+                                <br>
+                                <p>{{ portf.short_description}}
+                                </p>
+
+                                <a href="/portfolio_detail/{{ portf.id}}" class="theme-color">KNOW MORE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!--<div class="section desktop-only">-->
+                <!--<div class="container">-->
+                    <!--<div class="portfolio-item right-image" style="background-image:url('{% static "images/shubhloansbg.jpg" %}')">-->
+                        <!--<div class="right">-->
+                            <!--<div class="c-card">-->
+                                <!--<div class="count robo">02</div>-->
+                                <!--<div class="card-content">-->
+                                    <!--<h1 class=" robo">Shubhloans</h1>-->
+                                    <!--<h5>Alternative lending platform for blue collar workforce borrowers</h5>-->
+                                    <!--<br>-->
+                                    <!--<p>Shubhloans aims to democratize credit for millions of borrowers in India, who are not yet a part of the formal credit system-->
+                                    <!--and expand the availability of fair and transparent credit.</p>-->
+                                    <!--<a href="{% url 'shubhloans' %}" class="theme-color">KNOW MORE</a>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="left">-->
+                            <!--<img src="{% static "images/shubhteam.png" %}" class="team-portfolio" alt="">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="section mob-only">-->
+                <!--<div class="container">-->
+                    <!--<div class="portfolio-item" style="background-image:url('{% static "images/shubhloansbg.jpg" %}')">-->
+                        <!--<div class="left">-->
+                            <!--<img src="{% static "images/shubhteam.png" %}"  class="team-portfolio" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<div class="c-card">-->
+                                <!--<div class="count robo">01</div>-->
+                                <!--<div class="card-content">-->
+                                    <!--<h1 class=" robo">Shubhloans</h1>-->
+                                    <!--<h5>Alternative lending platform for blue collar worforce borrowers</h5>-->
+                                    <!--<br>-->
+                                    <!--<p>Shubhloans aims to democratize credit for millions of borrowers in India, who are not yet a part of the formal credit system-->
+                                    <!--and expand the availability of fair and transparent credit</p>-->
+                                    <!--<a href="shubhloans.html" class="theme-color">KNOW MORE</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="section ">-->
+                <!--<div class="container">-->
+                    <!--<div class="portfolio-item"  style="background-image:url('{% static "images/ds-bg.jpg" %}')">-->
+                        <!--<div class="left">-->
+                            <!--<img src="{% static "images/will2.png" %}" class="team-portfolio" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="right">-->
+                            <!--<div class="c-card">-->
+                                <!--<div class="count robo">03</div>-->
+                                <!--<div class="card-content">-->
+                                    <!--<h1 class=" robo">Greyatom</h1>-->
+                                    <!--<h5>Skilling &amp; learning platform for upcoming technologies</h5>-->
+                                    <!--<br>-->
+                                    <!--<p>GreyAtom aims to impart a Practice based education to Data Science enthusiasts by combining workplace realities, real world-->
+                                    <!--data and industry relevant technology stack.</p>-->
+                                        <!--<a href="{% url 'greyatom' %}" class="theme-color">KNOW MORE</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'portfolio' %}"><div class="button-portfolio">VIEW ALL PORTFOLIO</div>
+    </a>
+</div>
+<!--ended-->
+<!--blog section-->
+<div class="container">
+    <div class="line"></div>
+    <h2 class="robo title">OUR
+        <span class="theme">BLOG</span>
+    </h2>
+    <section class="variable slider">
+      {% for post in posts|slice:":5" %}
+        <div class="blog-carosal">
+            <img src="https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ post.featured_image }}">
+            <div class="detail-container">
+                <h5 class="blog-header">{% for category in post.categories.all|slice:":1" %} {{ category }} {% endfor %}</h5>
+                <a href="/blog/{{ post.slug }}"><h5 class="blog-content">{{ post.title|truncatewords:10 }}</h5></a>
+                <h5>by
+                    <span class="theme">{{ post.user }}</span>
+                </h5>
+            </div>
+        </div>
+      {% endfor %}
+    </section>
+    <div class="text-center">
+        <a href="{% url 'blog' %}"><div class="button-portfolio">VIEW ALL BLOGS</div></a>
+    </div>
+</div>
+<!--ended-->
+{% endblock %}
+{% block script %}
+<script>
+    function resetposition(){
+        $(".c-card").each(function (i) {
+
+            var cool = $(this).offset().top / 2.5;
+            $(this).css({
+                "top": cool + "px"
+            })
+        });
+        $(".count").each(function (i) {
+            var cool = -i * 50;
+            $(this).css({
+                "top": cool + "px"
+            })
+        });
+        $(".bio").each(function (i) {
+            var cool = -($(this).offset().top / 10);
+            $(this).css({
+                "bottom": cool + "px"
+            })
+        });
+
+    }
+    var screenWidth;
+    $(document).ready(function (){
+        screenWidth = $(window).width();
+        if (screenWidth>768){
+            resetposition();
+            $(window).scroll(function () {
+                winScroll = $(this).scrollTop();
+                window.requestAnimationFrame(parallax);
+            });
+        }
+    });
+    $(window).resize(function(){
+       screenWidth = $(window).width();
+    })
+
+    var cardScroll =0,countScroll=0,bioScroll=0,winScroll=0;
+
+
+
+    $.fn.isInViewport = function () {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
+
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+
+            return elementBottom > viewportTop && elementTop < viewportBottom;
+        };
+
+
+
+    function parallax() {
+         cardScroll = -(Math.round(winScroll / 2.5));
+         countScroll = (Math.round(winScroll / 10));
+         bioScroll = -(Math.round(winScroll / 10));
+            $('.c-card').css({
+                "transform": "translate3d(0," + cardScroll + "px,1px)"
+            });
+            $('.count').css({
+                "transform": "translate3d(0," + countScroll + "px,1px)"
+            });
+            $('.bio').css({
+                "transform": "translate3d(0," + bioScroll + "px,1px)"
+            });
+
+        }
+
+    $(".variable").slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 3,
+        centerMode: false,
+        variableWidth: true,
+        autoplay: false
+    });
+    $('.carousel').carousel({
+            interval: false
+        });
+
+        $(".hamb").click(function(){
+            $(this).toggleClass("active");
+            $(".menu-overlay").toggleClass("active");
+        })
+    $(".carousel-down-arrow").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#fullpage").offset().top
+    }, 700);
+});
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myCarousel").carousel({
+            interval : 6000,
+            pause: false
+        });
+    });
+</script>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% endblock %}

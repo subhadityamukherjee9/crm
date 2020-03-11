@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% block css %}<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="back-img pad-left contact-img-height" style="">
+    <div class="-section">
+        <div class="container">
+            <h1 class="header">Contact
+                <span class="theme">Us</span>
+            </h1>
+            <p class="header-content robo">We'd love to hear your business ideas, thoughts and musings</p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="contact-details">
+        <div class="img-side">
+            <div id="bangImage"></div>
+            <div id="delhiImage"></div>
+            <div class="address-side">
+                <div class="address-section">
+                    <div class="header-btn">
+                        <span class="address-btn banglaoreBtn active">Bangalore</span>
+                        <span class="address-btn delhiBtn">New Delhi</span>
+                    </div>
+                    <div class="address-body bangaloreAdd">
+                        <address>
+                            <h2 class="address-header theme">vcfirm Ventures </h2>
+                            vcfirm Ventures</br>
+                            32/1 (not to be confused with 32/1/1),</br>
+                            Second Floor, FPM Towers,</br>
+                            14th Cross, 9th main, Sector 6,</br>
+                            HSR Layout, Bangalore - 560102.</br>
+                            Landmark: Opposite Empire Restaurant
+                        </address>
+
+                        <h4>Abhishek Jain</h4>
+                        <h6>Abhishek@vcfirmvc.com</h6>
+                        <h4>Rohit Jain</h4>
+                        <h6>Rohit@vcfirmvc.com</h6>
+                        <h4>Vinay Menon</h4>
+                        <h6>vm@vcfirmvc.com</h6>
+
+                    </div>
+                    <div class="address-body delhiAdd hide">
+                        <address>
+                            <h2 class="address-header theme">vcfirm Ventures</h2>
+                             Flat 5 <br>
+                              S3 Tower
+                             Saraswati Appartments
+                            <br> Vasant Kunj, New Delhi,
+                            <br> Delhi 110070
+                        </address>
+                        <h4>Mukul Singhal</h4>
+                        <h6>Mukul@vcfirmvc.com</h6>
+                        <h4>Ruchira Sharma</h4>
+                        <h6>Ruchira@vcfirmvc.com</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ended-->
+{% endblock %}
+{% block script %}
+<script>
+    $('.banglaoreBtn').on('click',function () {
+        $('.delhiAdd').fadeOut();
+        $('.bangaloreAdd').fadeIn(300);
+        $('.bangaloreAdd').removeClass('hide');
+        $('.delhiAdd').addClass('hide');
+        $(this).addClass('active');
+        $('.delhiBtn').removeClass('active');
+        $("#delhiImage").hide();
+        $("#bangImage").show();
+        initMap()
+
+
+
+    });
+    $('.delhiBtn').on('click',function () {
+        $('.bangaloreAdd').fadeOut();
+        $('.delhiAdd').fadeIn(300);
+        $('.delhiAdd').removeClass('hide');
+        $('.bangaloreAdd').addClass('hide');
+        $(this).addClass('active');
+        $('.banglaoreBtn').removeClass('active');
+        $("#delhiImage").show();
+        $("#bangImage").hide();
+        initMap()
+
+    });
+    $(".hamb").click(function () {
+            $(this).toggleClass("active");
+            $(".menu-overlay").toggleClass("active");
+        })
+
+
+    function initMap() {
+            var uluru = { lat: 12.915371, lng: 77.635621 };
+            var panda = {lat: 28.523963,lng: 77.143761};
+            var map = new google.maps.Map(document.getElementById('bangImage'), {
+                zoom: 20,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+            var map2 = new google.maps.Map(document.getElementById('delhiImage'), {
+            zoom: 18,
+            center: panda
+        })
+        var marker2 = new google.maps.Marker({
+            position: panda,
+            map: map2
+        });
+
+
+        }
+
+
+
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuK5jU1KFzdi2iDwY-aGKltGZ5lzT6jw0&callback=initMap"></script>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+{% block content %}
+<div class="back-img pad-left" style="height:286px">
+    <div class="main-section container">
+        <h1 class="header">Our <span class="theme">Blog</span></h1>
+        <p class="header-content robo">Our thoughts, musings, and ruminations</p>
+    </div>
+</div>
+<div class="blog-main">
+    <div class="container">
+        <div class="col-md-3">
+            <form method='GET' action="">
+                <input type="text" class="input-box" placeholder="search" name="q" value="{{ request.GET.q }}">
+{#                <input type="submit" value="Search"/>#}
+            </form>
+            <h3 class="tag-header">Tags</h3>
+            <div class="tag-section">
+                {% for post in posts %}
+                {% if post.keywords_string != '' %}
+{#                  <form method="GET" action="">#}
+                      <a href="/blog/?q={{ post.keywords_string }}">
+                          <span class="tag-name" name="q" value="{{ request.GET.q }}">{{ post.keywords_string }}
+                          </span>
+                      </a>
+{#                  </form>#}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-9">
+          {% for post in posts %}
+            <div class="blog-section">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="blog-img" style="background-image:url('https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ post.featured_image }}')"></div>
+                    </div>
+                    <div class="col-md-7">
+                        <h5>{% for category in post.categories.all|slice:":1" %} {{ category }} {% endfor %}</h5>
+                        <a href="/blog/{{ post.slug }}" style="text-decoration: none;"><h2>{{ post.title }}</h2></a>
+                        <div class="blog-footer">
+                            by <span class="theme">{{ post.user }}</span>
+                            <span class="text-right">{{ post.publish_date|date:"M d, Y" }} | <a href="/blog/{{ post.slug }}#disqus_thread"></a> <i class="material-icons">insert_comment</i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+<script id="dsq-count-scr" src="//vcfirmvc.disqus.com/count.js" async></script>
+
+<!--ended-->
+{% endblock %}

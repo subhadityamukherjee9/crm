@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Team{% endblock %}
+{% block css %}<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="back-img pad-left img-height">
+    <div class="main-section">
+        <div class="container">
+            <h1 class="header">Our
+                <span class="theme">Team</span>
+            </h1>
+            <!-- <p class="header-content robo">Individual commitment to a group effort that is what makes a team work, a company work, a society work, a civilization work.</p> -->
+        </div>
+
+    </div>
+    <div class="svg-background">
+        <svg width="100%" height="100%" viewBox="0 0 100% 100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+            <title>Group 2</title>
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="-our-team-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, -317.000000)">
+                <g id="Group-2" transform="translate(-19.000000, 317.000000)">
+                    <polygon id="left-tri" fill-opacity="0.889011549" fill="#F5A623" points="0 164.568668 0 337 669 90"></polygon>
+                    <polygon id="right-tri" fill="#202A37" points="208 141.152441 1480 301.181394 1480 0"></polygon>
+                    <polygon id="Path-2" fill="#314155" points="1472.6368 287.393533 663 95 1474.71509 138.332179"></polygon>
+                </g>
+            </g>
+        </svg>
+    </div>
+</div>
+
+<div class="container">
+    <section class=" variable responsive slider team">
+      {% for teamob in team %}
+      <div class="team-carousel" data-toggle="modal" data-target="#myModal">
+          <img class="team-image" src="https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ teamob.team_image}}">
+          <div class="team-member">
+              <h3 class="theme team-name">{{teamob.team_name}}</h3>
+              <h5 class="team-designation robo">{{teamob.team_position}}</h5>
+              <span class="team-description">{{teamob.team_description}}</span>
+              <span class="team-email">{{teamob.team_email}}</span>
+              <span class="team-linkedin">{{teamob.team_linkedin_url}}</span>
+              <span class="team-twitter">{{teamob.team_twitter_url}}</span>
+          </div>
+      </div>
+        {% endfor %}
+
+      <!--<div class="team-carousel" data-toggle="modal" data-target="#myModal">-->
+          <!--<img class="team-image" src="{% static "images/abhishek.jpg" %}">-->
+          <!--<div class="team-member">-->
+              <!--<h3 class="theme team-name">Abhishek Jain</h3>-->
+              <!--<h5 class="team-designation robo">CFO & Partner</h5>-->
+              <!--<span class="team-description">Abhishek has over 12 years of experience in the areas of investment banking and working with startups. He has had-->
+                  <!--a rich experience in the public equity market and is well entrenched in the startup ecosystem. He has looked-->
+                  <!--at the startup journey through various lenses as an entrepreneur, advisor to both venture funds and startups,-->
+                  <!--investor, banker and employee. In his last role he was the CFO of YourStory. At vcfirm, Abhishek guides our-->
+                  <!--portfolio companies in the areas of finance and strategy. He is a CA and has done his MBA from IIM Lucknow.</span>-->
+              <!--<span class="team-email">Abhishek@vcfirmvc.com</span>-->
+              <!--<span class="team-linkedin">https://www.linkedin.com/in/abhishekjain81</span>-->
+              <!--<span class="team-twitter">https://twitter.com/atthecliff</span>-->
+          <!--</div>-->
+      <!--</div>-->
+        <!--<div class="team-carousel" data-toggle="modal" data-target="#myModal">-->
+            <!--<img class="team-image" src="{% static "images/mukul.jpg" %}">-->
+            <!--<div class="team-member">-->
+                <!--<h3 class="theme team-name">Mukul Singhal</h3>-->
+                <!--<h5 class="team-designation robo">Co-founder & Partner</h5>-->
+                <!--<span class="team-description">Mukul has over 10 years of venture investing experience in India. In the past, he has led investments and served-->
+                    <!--on the boards of companies like UrbanClap, Industry Buying, TravelTriangle, NoBroker, AutoNinja, PropTiger, Bobble-->
+                    <!--App and Tracxn. He invests in Consumer Internet, Mobililty and Marketplaces. He holds a B.Tech from IIT Kanpur-->
+                    <!--and an MBA from ISB, Hyderabad.</span>-->
+                <!--<span class="team-email">Mukul@vcfirmvc.com</span>-->
+                <!--<span class="team-linkedin">https://www.linkedin.com/in/mukuls97</span>-->
+                <!--<span class="team-twitter">https://twitter.com/mukuls97</span>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="team-carousel" data-toggle="modal" data-target="#myModal">-->
+            <!--<img class="team-image" src="{% static "images/rohit.jpg" %}">-->
+            <!--<div class="team-member">-->
+                <!--<h3 class="theme team-name">Rohit Jain</h3>-->
+                <!--<h5 class="team-designation  robo">Co-founder & Partner</h5>-->
+                <!--<span class="team-description">Rohit has 15 years of technology & product experience in companies like Google, Microsoft, and IBM Research. He holds multiple-->
+                <!--patents and has published a number of research papers. In the past, he has led investments and served on boards of companies-->
+                <!--like CoverFox, TravelTriangle, Walnut, AutoNinja, Nobroker, Qikwell, and Zoomo. He invests in the Fintech, Marketplaces,-->
+                <!--Mobility & Enterprise sectors. He holds a B.Tech in computer science from IIT Delhi & a master's in computer science from-->
+                <!--the University of North Carolina. </span>-->
+                <!--<span class="team-email">Rohit@vcfirmvc.com</span>-->
+                <!--<span class="team-linkedin">https://www.linkedin.com/in/rohit-jain-323a703/</span>-->
+                <!--<span class="team-twitter">https://twitter.com/rohitjain</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="team-carousel" data-toggle="modal" data-target="#myModal">-->
+            <!--<img  class="team-image" src="{% static "images/ruchi.jpg" %}">-->
+            <!--<div class="team-member">-->
+                <!--<h3 class="theme team-name">Ruchira Sharma</h3>-->
+                <!--<h5 class="team-designation robo">Associate Vice President</h5>-->
+                <!--<span class="team-description">Ruchira holds a B.Tech & M.Tech from IIT Delhi. In the past, she has been a management consultant with the Boston Consulting-->
+                <!--Group, where she supported clients across the Finance, Industrial Goods and Consumers Goods sectors. She has also served-->
+                <!--as the Executive Aide to the President of the Public Health Foundation of India - a not-for-profit organization supported-->
+                <!--by the Ministry of Health and Family Welfare. Prior to joining vcfirm, she was with Helion Advisers, an early stage Indian-->
+                <!--venture capital fund.</span>-->
+                <!--<span class="team-email">Ruchira@vcfirmvc.com</span>-->
+                <!--<span class="team-linkedin">https://www.linkedin.com/in/ruchira-sharma1008</span>-->
+                <!--<span class="team-twitter">https://twitter.com/Sh_Ruchira</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="team-carousel" data-toggle="modal" data-target="#myModal">-->
+            <!--<img class="team-image" src="{% static "images/vinay.jpg" %}">-->
+            <!--<div class="team-member">-->
+                <!--<h3 class="theme team-name">Vinay Menon</h3>-->
+                <!--<h5 class="team-designation robo">Co-founder & Partner</h5>-->
+                <!--<span class="team-description">Vinay has over eighteen years of Investment Banking experience with JPMorgan and Kotak Mahindra, where he has held-->
+                    <!--multiple leadership roles including Managing Director, Head Of ECM and Co-Head of Investment Banking Coverage,-->
+                    <!--JPMorgan. He has helped build the market-leading Capital Markets Franchise. He has led numerous marquee capital raising and advisory transactions across private and public sector. He has been an active angel investor across sectors like Big Data Analytics, Logistics, Vertical E-Commerce, among others.-->
+                <!--</span>-->
+                <!--<span class="team-email">Vm@vcfirmvc.com</span>-->
+                <!--<span class="team-linkedin">https://www.linkedin.com/in/vinay-menon-15476a12</span>-->
+                <!--<span class="team-twitter"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    </section>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade team-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button class="transparent" data-dismiss="modal">
+                <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="team-member-view" transform="translate(-1031.000000, -149.000000)" stroke="#2E2D2D" stroke-width="2">
+                            <g id="Group-3" transform="translate(1031.000000, 150.000000)">
+                                <path d="M0.988203148,0.0822067062 L16.7007591,15.7947627" id="Path-23" transform="translate(8.844481, 7.938485) scale(-1, 1) translate(-8.844481, -7.938485) "></path>
+                                <path d="M0.988203148,0.0822067062 L16.7007591,15.7947627" id="Path-23"></path>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+            <img id="team-detail-image" src="{% static "images/img1.jpg" %}" class="modal-img">
+            <h3 id="team-detail-name">Rohit Jain</h3>
+            <h4 id="team-detail-designation" class="robo">Co founder</h4>
+            <p id="team-detail-description">
+                Rohit has 15 years of technology & product experience in companies like Google, Microsoft, and IBM Research. He holds multiple patents and has published a number of research papers. In the past, he has led investments and served on boards of companies like CoverFox, TravelTriangle, Walnut, AutoNinja, Nobroker, Qikwell, and Zoomo. He invests in the Fintech, Marketplaces, Mobility & Enterprise sectors. He holds a B.Tech in computer science from IIT Delhi & a master's in computer science from the University of North Carolina.
+            </p>
+            <h4 id="team-detail-email" class="robo">Email: Rohit@vcfirmvc.com</h4>
+            <div class=" team-social-link clearfix">
+                <a href="" id="ln" target="_blank">
+                        <svg width="38px" height="39px" viewBox="0 0 38 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="ln" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Contact-Us" transform="translate(-1104.000000, -981.000000)" fill="#010002" fill-rule="nonzero">
+                                    <g id="linkedin-button" transform="translate(1104.000000, 981.000000)">
+                                        <path d="M19,0 C8.5072493,0 0,8.73112428 0,19.5 C0,30.2688757 8.5072493,39 19,39 C29.4927507,39 38,30.2688757 38,19.5 C38,8.72871881 29.4927507,0 19,0 Z M14.25,28.9453075 L9.5,28.9453075 L9.5,11.8827674 L14.25,11.8827674 L14.25,28.9453075 Z M12.022229,10.8371108 C10.7919744,10.8371108 9.79687988,9.81334397 9.79687988,8.55071424 C9.79687988,7.28808451 10.7943963,6.26431767 12.022229,6.26431767 C13.2524836,6.26672314 14.25,7.29048998 14.25,8.55071424 C14.25,9.81334397 13.2524836,10.8371108 12.022229,10.8371108 Z M30.8749609,28.9453075 L26.1249609,28.9453075 L26.1249609,18.3958104 C26.1249609,17.1599615 25.7805803,16.294715 24.3009466,16.294715 C21.8475468,16.294715 21.3749609,18.3958104 21.3749609,18.3958104 L21.3749609,28.9453075 L16.6249609,28.9453075 L16.6249609,11.8827674 L21.3749609,11.8827674 L21.3749609,13.5134336 C22.0541909,12.9796604 23.7499219,11.8851729 26.1249609,11.8851729 C27.6639706,11.8851729 30.8749609,12.8309224 30.8749609,18.5443881 L30.8749609,28.9453075 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                       </svg>
+                </a>
+                <a href="" id="twitter" target="_blank">
+                    <svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+                        <desc>Created with Sketch.</desc>
+                        <defs></defs>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="tw" transform="translate(-1209.000000, -981.000000)" fill="#000000" fill-rule="nonzero">
+                                <g id="Group-18" transform="translate(1.000000, 959.000000)">
+                                    <g id="twitter-logo-button" transform="translate(1208.000000, 22.000000)">
+                                        <path d="M19,0 C8.52344316,0 0,8.52344316 0,19 C0,29.4757915 8.52344316,38 19,38 C29.4757915,38 38,29.4757915 38,19 C38,8.52344316 29.4773222,0 19,0 Z M27.4759929,14.6514138 C27.4844115,14.8396842 27.4890035,15.0294852 27.4890035,15.2192862 C27.4890035,20.9982679 23.0914364,27.6596713 15.0455571,27.6596713 C12.5758479,27.6596713 10.2768066,26.9379683 8.34206074,25.6966084 C8.68416177,25.7371707 9.0323854,25.7578345 9.385201,25.7578345 C11.4347458,25.7578345 13.3197454,25.0583259 14.8167244,23.8858455 C12.9034077,23.8506405 11.2878031,22.5863208 10.7314106,20.8482639 C10.9977443,20.8987755 11.2724966,20.9270926 11.5533715,20.9270926 C11.9521067,20.9270926 12.339362,20.8750504 12.7059534,20.7747926 C10.7053895,20.3737614 9.19846129,18.6066221 9.19846129,16.4866672 C9.19846129,16.4682994 9.19846129,16.4491662 9.19922662,16.4315637 C9.78852816,16.7583582 10.462781,16.9558125 11.1791267,16.9780069 C10.0066463,16.1950777 9.23443164,14.8557561 9.23443164,13.3388786 C9.23443164,12.5368162 9.44948844,11.7852654 9.82602916,11.1393297 C11.9819544,13.7858294 15.2055104,15.5261822 18.8392814,15.7098606 C18.7642794,15.3891888 18.7267784,15.0562717 18.7267784,14.71264 C18.7267784,12.2980343 20.684484,10.3395634 23.0990897,10.3395634 C24.3572867,10.3395634 25.4922662,10.8707001 26.2912672,11.7202127 C27.2884879,11.5242891 28.2221864,11.1615242 29.069403,10.6587046 C28.7403126,11.6804157 28.0492226,12.5368162 27.1438411,13.0786675 C28.0293241,12.9730524 28.8742447,12.7388625 29.6556433,12.3906388 C29.0724644,13.2661726 28.3308628,14.0368565 27.4759929,14.6514138 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--ended-->
+{% endblock %}
+
+{% block script %}
+<script>
+
+    $(window).scroll(function () {
+            var scrollValue = $(this).scrollTop();
+            var move = scrollValue / 10;
+            var rotate = scrollValue / -5;
+            $("#left-tri").css({
+                "transform": "translate3d(0," + move + "px,0)"
+            })
+            $("#right-tri").css({
+                "transform": "translate3d(0," + rotate + "px,0)"
+            })
+
+        })
+
+        $(".team-carousel").click(function(){
+            var name = $(this).find('.team-name').text();
+            var desg = $(this).find('.team-designation').text();
+            var url = $(this).find('.team-image').attr('src');
+            var descp = $(this).find('.team-description').text();
+            var mail= $(this).find('.team-email').text();
+            var ln = $(this).find('.team-linkedin').text();
+            var twitter = $(this).find('.team-twitter').text();
+            console.log(twitter);
+            $('#team-detail-name').text(name);
+            $('#team-detail-designation').text(desg);
+            $('#team-detail-image').attr('src',url);
+            $('#team-detail-description').text(descp);
+            if(ln.length > 1){
+                $('#ln').show();
+                $('#ln').attr('href', ln);
+            }
+            else{
+                $('#ln').hide();
+            }
+            if(twitter.length >1){
+                $("#twitter").show();
+                $('#twitter').attr('href', twitter);
+
+            }
+            else{
+                $("#twitter").hide();
+            }
+
+
+
+            if(mail.length>1){
+                $('#team-detail-email').text("Email:" + mail);
+            }
+            else{
+               $('#team-detail-email').text("");
+            }
+        })
+         $(".hamb").click(function () {
+                $(this).toggleClass("active");
+                $(".menu-overlay").toggleClass("active");
+            })
+
+            $(window).keydown(function(e){
+                if(e.keyCode==27){
+                    $(".transparent").click();
+                }
+            })
+
+</script>
+<script>
+    var ratio = 1.369;
+    var parentWidth = $(".team-carousel").width();
+    var imgHeight = ratio * parentWidth;
+    $(".team-carousel").css({
+        height: imgHeight + "px"
+    })
+</script>
+
+{% endblock %}

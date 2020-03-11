@@ -1,0 +1,15 @@
+{{ object.name }}
+{{ object.location }}
+{{ object.title }}
+{% for connection in obj.connection.all %}
+    {{ connection.username }}
+{% endfor %}
+{% for auth in object.tags.all %}
+{{auth.tag_name}}
+{% endfor %}
+{% for auth in object.company.all %}
+{{auth.company.company_name}}
+{% endfor %}
+{% for auth in object.institute.all %}
+{{auth.institute.institute_name}}
+{% endfor %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Shubhloans{% endblock %}
+{% block css %}<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="full-bg-cover" style="background-image:url('{% static "images/family.jpg" %}')">
+    <div class="bg-overlay shubhloans-gr"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="porfolio-left-content">
+                    <h1>Shubhloans</h1>
+                    <h4 class="robo">Alternative lending platform for blue-collar workforce borrowers.</h4>
+                    <p>Shubhloans aims to democratize credit for millions of borrowers in India, who are not yet a part of the formal credit system
+                    and expand the availability of fair and transparent credit. It is building the next generation credit assessment, lending
+                    and risk management platform. Armed with real-time analytics and credit reports based on alternative data, it enables lenders
+                    to access unserved and underserved market segments..</p>
+                    <h5 class="medium">For More Info</h5>
+                    <h5 class="theme robo">
+                        <a href="https://www.shubhloans.com/" class="theme" target="_blank">shubhloans.com</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="founder-section">
+                    <h4 class=" robo">FOUNDERS</h4>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <a href="http://www.linkedin.com/in/anand-barua-8249434/" target="_blank">
+                                <img src="{% static "images/anand.jpg" %}" width="120px" height="120px">
+                                <p class="">Anand Barua</p>
+                            </a>
+
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="http://www.linkedin.com/in/monishanand" target="_blank">
+                                <img src="{% static "images/Mouni.jpg" %}" width="120px" height="120px">
+                                <p class="">Mounish Anand</p>
+                            </a>
+
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="http://www.linkedin.com/in/rahul-sekar-26527895/" target="_blank">
+                                <img src="{% static "images/rahul.jpg" %}" width="120px" height="120px">
+                                <p class="">Rahul Sekar</p>
+                            </a>
+
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="http://www.linkedin.com/in/tushar-patel-7659b410/" target="_blank">
+                                <img src="{% static "images/tushar.jpg" %}" width="120px" height="120px">
+                                <p class="">Tushar Patel</p>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+     $(".hamb").click(function () {
+            $(this).toggleClass("active");
+            $(".menu-overlay").toggleClass("active");
+        })
+
+</script>
+{% endblock %}

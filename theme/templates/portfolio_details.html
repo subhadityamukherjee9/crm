@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{portfolio.company_name}}{% endblock %}
+{% block css %}<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">{% endblock %}
+{% block content %}
+<div class="full-bg-cover" style="background-image:url('https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{portfolio.portfolio_background_image}}')">
+    <div class="bg-overlay {{portfolio.company_name|lower|cut:' '}}-gr"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="porfolio-left-content">
+                    <h1>{{portfolio.company_name}}</h1>
+                    <h4 class="robo">{{portfolio.company_subhead}}</h4>
+                    <p>{{portfolio.description}}</p>
+                    <h5 class="medium">For More Info</h5>
+                    <h5 class="theme robo">
+                        <a href="{{portfolio.portfolio_company_link}}" class="theme" target="_blank">Click here</a>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="founder-section">
+                    <h4 class=" robo">FOUNDERS</h4>
+                    <div class="row">
+                        {% for found in portfolio.founders.all %}
+                        <div class="col-md-6 text-center">
+                            <a href="{{ found.linkedin_url}}" target="_blank">
+                                <img src="https://vcfirm-contactimages-ap-south-1.s3.amazonaws.com/media/{{ found.founder_image }}" width="120px" height="120px">
+                                <p class="">{{found.founder_name}}</p>
+                            </a>
+
+                        </div>
+                        {% endfor %}
+                        <!--<div class="col-md-6 text-center">-->
+                            <!--<a href="http://www.linkedin.com/in/monishanand" target="_blank">-->
+                                <!--<img src="{% static "images/Mouni.jpg" %}" width="120px" height="120px">-->
+                                <!--<p class="">Mounish Anand</p>-->
+                            <!--</a>-->
+
+                        <!--</div>-->
+                        <!--<div class="col-md-6 text-center">-->
+                            <!--<a href="http://www.linkedin.com/in/rahul-sekar-26527895/" target="_blank">-->
+                                <!--<img src="{% static "images/rahul.jpg" %}" width="120px" height="120px">-->
+                                <!--<p class="">Rahul Sekar</p>-->
+                            <!--</a>-->
+
+                        <!--</div>-->
+                        <!--<div class="col-md-6 text-center">-->
+                            <!--<a href="http://www.linkedin.com/in/tushar-patel-7659b410/" target="_blank">-->
+                                <!--<img src="{% static "images/tushar.jpg" %}" width="120px" height="120px">-->
+                                <!--<p class="">Tushar Patel</p>-->
+                            <!--</a>-->
+
+                        <!--</div>-->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+     $(".hamb").click(function () {
+            $(this).toggleClass("active");
+            $(".menu-overlay").toggleClass("active");
+        })
+
+</script>
+{% endblock %}

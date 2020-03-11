@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript">
+    // needed when making post requests in Django
+    // we’ll use this for the ajax request in script.js
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+  </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <link rel="stylesheet" href="../static/assets/css/style.css">
+</head>
+<body>
+  <nav>
+      <div class="container">
+          <a href="{% url 'dashboard' %}" class="top-menu"><img src="../static/assets/images/logo.svg"class="headimg"></a>
+          {% if user.is_authenticated %}
+          <span class="float-right">
+                <span class="loguser">Logged in as {{request.user.username}}</span>
+                <a href="{% url 'log-out' %}" class="top-menu"><span class="ml-3">Logout</span></a>
+          </span>
+          {% endif %}
+      </div>
+  </nav>
+    <div class="container">
+        <div class="header">
+          <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 col-12">
+              {% if searchKey == None %}
+                <input type="text" name="searchContact" id="searchContact" placeholder="Search" value="">
+              {% else %}
+                <input type="text" name="searchContact" id="searchContact" placeholder="Search" value="{{ searchKey }}">
+              {% endif %}
+              <span id="searchBtn"><i class="material-icons">search</i></span>
+            </div>
+
+              <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 col-12 searchdiv">
+                <span class="color-btn pointer searchspan" data-toggle="modal" data-target="#uploadContact">Upload Contacts</span>
+              </div>
+            </div>
+        </div>
+        <div class="selectors-section">
+          <div class="row">
+            <div class="col-lg-7 col-md-5 col-sm-3 col-xs-2 col-12">
+              <h4>All Contacts</h4>
+          </div>
+          <div class="col-lg-5 col-md-7 col-sm-9 col-xs-10 col-12 searchdiv">
+            <span class="float-right">
+                <input type="checkbox" onChange="selectAll()" class="filled-in mCheckBox" id="selectAll">
+                <label for="selectAll" id="labled">Select All</label>
+                <button class="email-btn btn-disable" disabled data-toggle="modal" disabled data-target="#sendEmail">{% if user.is_superuser == False and user.is_staff == False %}Request Intro {% else %}Send Email {% endif %}</button>
+            </span>
+            <div class="selected-no hide"><span></span> Contacts Seleted</div>
+        </div>
+        </div>
+    </div>
+    </div>
+<!--Content-->
+<div class="contact-container">
+      <div id="posts">{% include 'post.html' %}</div>
+      {% if visible > 15 %}
+              <button class="loadmore" id="lazyLoadLink" href="javascript:void(0);" data-page="2">Load More</button>
+      {% endif %}
+      <!-- <div class="loadmore" align="center">    </div> -->
+</div>
+</div>
+    </div>
+<!--Ended Content Show -->
+<!--upload cotact Modal -->
+<div id="uploadContact" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Upload Contacts</h4>
+              <i class="material-icons close" data-dismiss="modal">close</i>
+            </div>
+            <div class="container">
+                <div class="modal-body">
+                    <form id="file" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="modal-footer mt-3 uploadslt">
+                      <input type="file" id="myfile" name="myfile">
+                      <button type="submit" id="upload" class="btn-cancel btn-upload uploadmax" ><i class="material-icons float-left">file_upload</i>Upload</button>
+                    </div>
+                    <button type="submit" class="btn-cancel btn-upload uploadmin" ><i class="material-icons float-left">file_upload</i>Upload</button>
+
+                    <!-- <h6>Download Format <a href="#" class="link">Here</a></h6> -->
+                </div>
+                <h3 id="uploadmax" class="uploadmax"></h3>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--send email Modal -->
+<div id="sendEmail" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Compose Mail</h4>
+              <i class="material-icons close" data-dismiss="modal">close</i>
+            </div>
+            <div class="container">
+                <div class="modal-body">
+		              <form method="POST" action="{% url 'email' %}">
+                    {% csrf_token %}
+                    <textarea id="emailArea" name="body"></textarea>
+                    <input type="hidden" name="user" id="user">
+                    {% if user.is_superuser == False and user.is_staff == False %}
+                      <input type="hidden" name="user_role" id="user_role" value="0">
+                       {% else %}
+                       <input type="hidden" name="user_role" id="user_role" value="1">
+                       {% endif %}
+                       <input type="hidden" name="user_name" value="{{user.username}}">
+                    <input type="submit" value="SUBMIT">
+                  </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn-cancel" data-dismiss="modal"><i class="material-icons float-left">close</i> Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+<script>
+    function able(count) {
+        $('.selected-no span').html(count);
+        $('.selected-no').show();
+        $('.email-btn').removeClass('btn-disable');
+        $('.email-btn').prop("disabled", false);
+    }
+    function disable() {
+        $('input:checkbox').prop('checked', false);
+        $('.selected-no').hide();
+        $('.email-btn').addClass('btn-disable');
+        $('.email-btn').prop("disabled", true);
+    }
+
+    function selectAll() {
+        var selectAll = document.getElementById('selectAll');
+        if (selectAll.checked) {
+            $('input:checkbox').prop('checked', true);
+            var count = $('.contact-section input:checkbox').length;
+            if(count)
+                able(count);
+            else
+                disable();
+        }
+        else {
+            $('input:checkbox').prop('checked', false);
+            disable();
+        }
+    }
+
+    $('.contact-section input:checkbox').on('change',function(){
+        var count = $('.contact-section input[type=checkbox]:checked').length,
+            total = $('.contact-section input[type=checkbox]').length;
+        if(count == total)
+            $('.selectors-section input:checkbox').prop('checked', true);
+        else
+            $('.selectors-section input:checkbox').prop('checked', false);
+        if(count)
+            able(count);
+        else
+            disable();
+    });
+
+    tinymce.init({
+        selector:'#emailArea',
+        width : "100%",
+        height : "190"
+         });
+
+     function search() {
+            window.location.href = document.location.origin+'/dashboard?search='+$('[name=searchContact]').val();
+        }
+
+     $('#searchBtn').on('click',function(){
+        search();
+     });
+
+     $('#searchContact').keypress(function (e) {
+             var key = e.which;
+             if(key == 13)  // the enter key code
+              {
+                search();
+              }
+        });
+     $('.email-btn').on('click',function () {
+          var emailId = [];
+          $('.contact-section input[type=checkbox]:checked').each(function() {
+              let value = $(this).attr('id');
+              emailId.push(value);
+
+          });
+          $('#user').val(emailId);
+
+     });
+</script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+<script src="../static/assets/js/scripts.js"></script>
+</html>
